@@ -1,48 +1,32 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov 11 03:14:08 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov 11 06:29:05 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
-            "name": "Member",
+            "name": "TableCell",
             "base": "",
             "fields": [
                 {
-                    "name": "username",
-                    "type": "string"
-                },
-                {
                     "name": "key",
                     "type": "name"
+                },
+                {
+                    "name": "data",
+                    "type": "Unit"
                 }
             ]
         },
         {
-            "name": "MemberApplication",
+            "name": "Unit",
             "base": "",
             "fields": [
                 {
-                    "name": "username",
-                    "type": "string"
+                    "name": "type",
+                    "type": "UnitType"
                 },
                 {
-                    "name": "key",
-                    "type": "name"
-                },
-                {
-                    "name": "contact",
-                    "type": "string"
-                },
-                {
-                    "name": "timestamp",
-                    "type": "uint64"
-                },
-                {
-                    "name": "joinvotes",
-                    "type": "[16]"
-                },
-                {
-                    "name": "votecount",
-                    "type": "int32"
+                    "name": "bytes",
+                    "type": "[40]"
                 }
             ]
         },
@@ -88,12 +72,7 @@
             "fields": []
         }
     ],
-    "types": [
-        {
-            "new_type_name": "[16]",
-            "type": "unsigned long long [16]"
-        }
-    ],
+    "types": [],
     "actions": [
         {
             "name": "apply",
@@ -113,15 +92,8 @@
     ],
     "tables": [
         {
-            "name": "memberapps",
-            "type": "MemberApplication",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "members",
-            "type": "Member",
+            "name": "cells",
+            "type": "TableCell",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
