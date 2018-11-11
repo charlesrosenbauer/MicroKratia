@@ -54,7 +54,7 @@ class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      noteTable: [] // to store the table rows from smart contract
+      issueTable: [] // to store the table rows from smart contract
     };
     this.handleFormEvent = this.handleFormEvent.bind(this);
   }
@@ -68,7 +68,7 @@ class Index extends Component {
     // collect form data
     let account = event.target.account.value;
     let privateKey = event.target.privateKey.value;
-    let note = event.target.note.value;
+    let issue = event.target.issue.value;
 
     // prepare variables for the switch below to send transactions
     let actionName = "";
@@ -80,7 +80,13 @@ class Index extends Component {
         actionName = "update";
         actionData = {
           user: account,
-          note: note,
+          issue: issue,
+        };
+        break;
+        case "register":
+        actionName = "apply";
+        actionData = {
+          user: account,
         };
         break;
       default:
@@ -94,7 +100,7 @@ class Index extends Component {
     try {
       const result = await api.transact({
         actions: [{
-          account: "notechainacc",
+          account: "issuechainacc",
           name: actionName,
           authorization: [{
             actor: account,
@@ -118,16 +124,16 @@ class Index extends Component {
   }
 
   // gets table data from the blockchain
-  // and saves it into the component state: "noteTable"
+  // and saves it into the component state: "issueTable"
   getTable() {
     const rpc = new JsonRpc(endpoint);
     rpc.get_table_rows({
       "json": true,
-      "code": "notechainacc",   // contract who owns the table
-      "scope": "notechainacc",  // scope of the table
-      "table": "notestruct",    // name of the table as specified by the contract abi
+      "code": "issuechainacc",   // contract who owns the table
+      "scope": "issuechainacc",  // scope of the table
+      "table": "issuestruct",    // name of the table as specified by the contract abi
       "limit": 100,
-    }).then(result => this.setState({ noteTable: result.rows }));
+    }).then(result => this.setState({ issueTable: result.rows }));
   }
 
   componentDidMount() {
@@ -135,38 +141,38 @@ class Index extends Component {
   }
 
   render() {
-    const { noteTable } = this.state;
+    const { issueTable } = this.state;
     const { classes } = this.props;
 
-    // generate each note as a card
-    const generateCard = (key, timestamp, user, note) => (
+    // generate each issue as a card
+    const generateCard = (key, timestamp, user, issue) => (
       <Card className={classes.card} key={key}>
         <CardContent>
           <Typography variant="headline" component="h2">
-            {user}
+            {issue}
           </Typography>
           <Typography style={{fontSize:12}} color="textSecondary" gutterBottom>
             {new Date(timestamp*1000).toString()}
           </Typography>
           <Typography component="pre">
-            {note}
+            {user}
           </Typography>
         </CardContent>
       </Card>
     );
-    let noteCards = noteTable.map((row, i) =>
-      generateCard(i, row.timestamp, row.user, row.note));
+    let issueCards = issueTable.map((row, i) =>
+      generateCard(i, row.timestamp, row.user, row.issue));
 
     return (
       <div>
         <AppBar position="static" color="default">
           <Toolbar>
             <Typography variant="title" color="inherit">
-              Note Chain
+              Issues
             </Typography>
           </Toolbar>
         </AppBar>
-        {noteCards}
+        {issueCards}
         <Paper className={classes.paper}>
           <form onSubmit={this.handleFormEvent}>
             <TextField
@@ -184,9 +190,9 @@ class Index extends Component {
               fullWidth
             />
             <TextField
-              name="note"
+              name="issue"
               autoComplete="off"
-              label="Note (Optional)"
+              label="Issue (Optional)"
               margin="normal"
               multiline
               rows="10"
@@ -197,15 +203,10 @@ class Index extends Component {
               color="primary"
               className={classes.formButton}
               type="submit">
-              Add / Update note
+              Add / Update Issue
             </Button>
           </form>
         </Paper>
-        <pre className={classes.pre}>
-          Below is a list of pre-created accounts information for add/update note:
-          <br/><br/>
-          accounts = { JSON.stringify(accounts, null, 2) }
-        </pre>
       </div>
     );
   }
