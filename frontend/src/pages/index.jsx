@@ -83,6 +83,12 @@ class Index extends Component {
           note: note,
         };
         break;
+        case "register":
+        actionName = "apply";
+        actionData = {
+          user: account,
+        };
+        break;
       default:
         return;
     }
@@ -143,13 +149,13 @@ class Index extends Component {
       <Card className={classes.card} key={key}>
         <CardContent>
           <Typography variant="headline" component="h2">
-            {user}
+            {note}
           </Typography>
           <Typography style={{fontSize:12}} color="textSecondary" gutterBottom>
             {new Date(timestamp*1000).toString()}
           </Typography>
           <Typography component="pre">
-            {note}
+            {user}
           </Typography>
         </CardContent>
       </Card>
@@ -162,7 +168,7 @@ class Index extends Component {
         <AppBar position="static" color="default">
           <Toolbar>
             <Typography variant="title" color="inherit">
-              Note Chain
+              Issues
             </Typography>
           </Toolbar>
         </AppBar>
@@ -186,7 +192,7 @@ class Index extends Component {
             <TextField
               name="note"
               autoComplete="off"
-              label="Note (Optional)"
+              label="Issue (Optional)"
               margin="normal"
               multiline
               rows="10"
@@ -197,15 +203,10 @@ class Index extends Component {
               color="primary"
               className={classes.formButton}
               type="submit">
-              Add / Update note
+              Add / Update Issue
             </Button>
           </form>
         </Paper>
-        <pre className={classes.pre}>
-          Below is a list of pre-created accounts information for add/update note:
-          <br/><br/>
-          accounts = { JSON.stringify(accounts, null, 2) }
-        </pre>
       </div>
     );
   }
