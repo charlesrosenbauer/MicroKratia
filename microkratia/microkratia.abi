@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov 11 06:29:05 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov 11 11:05:04 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -10,16 +10,6 @@
                     "name": "key",
                     "type": "name"
                 },
-                {
-                    "name": "data",
-                    "type": "Unit"
-                }
-            ]
-        },
-        {
-            "name": "Unit",
-            "base": "",
-            "fields": [
                 {
                     "name": "type",
                     "type": "UnitType"
@@ -47,29 +37,6 @@
                     "type": "string"
                 }
             ]
-        },
-        {
-            "name": "approve",
-            "base": "",
-            "fields": [
-                {
-                    "name": "gatekeeper",
-                    "type": "name"
-                },
-                {
-                    "name": "user",
-                    "type": "name"
-                },
-                {
-                    "name": "application",
-                    "type": "name"
-                }
-            ]
-        },
-        {
-            "name": "printapps",
-            "base": "",
-            "fields": []
         }
     ],
     "types": [],
@@ -77,16 +44,6 @@
         {
             "name": "apply",
             "type": "apply",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "approve",
-            "type": "approve",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "printapps",
-            "type": "printapps",
             "ricardian_contract": ""
         }
     ],
