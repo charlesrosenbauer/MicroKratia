@@ -1,0 +1,132 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Nov 11 03:14:08 2018",
+    "version": "eosio::abi/1.0",
+    "structs": [
+        {
+            "name": "Member",
+            "base": "",
+            "fields": [
+                {
+                    "name": "username",
+                    "type": "string"
+                },
+                {
+                    "name": "key",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "MemberApplication",
+            "base": "",
+            "fields": [
+                {
+                    "name": "username",
+                    "type": "string"
+                },
+                {
+                    "name": "key",
+                    "type": "name"
+                },
+                {
+                    "name": "contact",
+                    "type": "string"
+                },
+                {
+                    "name": "timestamp",
+                    "type": "uint64"
+                },
+                {
+                    "name": "joinvotes",
+                    "type": "[16]"
+                },
+                {
+                    "name": "votecount",
+                    "type": "int32"
+                }
+            ]
+        },
+        {
+            "name": "apply",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "username",
+                    "type": "string"
+                },
+                {
+                    "name": "contact",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "approve",
+            "base": "",
+            "fields": [
+                {
+                    "name": "gatekeeper",
+                    "type": "name"
+                },
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "application",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "printapps",
+            "base": "",
+            "fields": []
+        }
+    ],
+    "types": [
+        {
+            "new_type_name": "[16]",
+            "type": "unsigned long long [16]"
+        }
+    ],
+    "actions": [
+        {
+            "name": "apply",
+            "type": "apply",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "approve",
+            "type": "approve",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "printapps",
+            "type": "printapps",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "memberapps",
+            "type": "MemberApplication",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "members",
+            "type": "Member",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "abi_extensions": []
+}
